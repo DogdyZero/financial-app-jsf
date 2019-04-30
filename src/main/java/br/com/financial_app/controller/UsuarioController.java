@@ -40,7 +40,7 @@ public class UsuarioController {
 				FacesContext.getCurrentInstance().getExternalContext().
 					getSessionMap().put("usuario", this.usuario);
 				this.mensagem ="Login Efetuado com sucesso!";
-				FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("cadastro.xhtml");
 
 			}
 			catch (Exception e) {

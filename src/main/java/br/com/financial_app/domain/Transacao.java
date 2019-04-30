@@ -31,20 +31,25 @@ public class Transacao extends EntidadeDominio {
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="cat_id")
 	private Categoria categoria;
+	
 	@Column(name="tra_valor")
 	private double valor;
+	
+	@Column(name="tra_obs")
+	private String obs;
 	
 	public Transacao() {
 		super();
 	}
 	public Transacao(Date data, TipoTransacao tipoTransacao, FormaPagamento formaPagamento, Categoria categoria,
-			double valor) {
+			double valor, String obs) {
 		super();
 		this.data = data;
 		this.tipoTransacao = tipoTransacao;
 		this.formaPagamento = formaPagamento;
 		this.categoria = categoria;
 		this.valor = valor;
+		this.obs = obs;
 	}
 	public Date getData() {
 		return data;
@@ -76,6 +81,14 @@ public class Transacao extends EntidadeDominio {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	public String getObs() {
+		return obs;
+	}
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
+	
+	
 	
 	
 }

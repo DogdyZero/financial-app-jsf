@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+<h:head>
+<style>
+.aviso{
+border-radius:5px;
+background-color:#7FFFD4;
+width: 100%;
+padding-left: 10px;
+font-weight: bold;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Financial System - Cadastro</title>
+</h:head>
+<h:body>
+<p:accordionPanel>
+	<p:tab title="Cadastrar Nova Transacao">
+		<h:form>
+			<h:panelGrid  rendered="#{not empty financeiroController.mensagem}" columns="1" cellpadding="3" styleClass="aviso">
+					<h:outputText value="#{financeiroController.mensagem}"  />		
+			</h:panelGrid>
+		 	<h:panelGrid columns="2" cellpadding="3">
+		 	    <p:outputLabel for="button" value="Data:" />
+        		<p:calendar id="button" value="#{financeiroController.transacao.data}" showOn="button" />
+        		
+        		
+        		<h:outputText value="Tipo Transação: " />
+		        <p:selectOneMenu style="width:200px" value="#{financeiroController.transacao.tipoTransacao}">
+		        	<p:outputLabel for="tipoTransacao" value="Tipo Livro: " />
+                	<f:selectItem itemLabel="Selecione o tipo" itemValue="" noSelectionOption="true" />
+                	<f:selectItems value="#{financeiroController.tipoTransacao}" var="tipoTransacao"/>
+            	</p:selectOneMenu>
+            	
+            	<h:outputText value="Categoria: " />
+		        <p:selectOneMenu style="width:200px" value="#{financeiroController.transacao.categoria}">
+		        	<p:outputLabel for="tipoTransacao" value="categoria: " />
+                	<f:selectItem itemLabel="Selecione o tipo" itemValue="" noSelectionOption="true" />
+                	<f:selectItems value="#{financeiroController.categorias}" var="categoria"/>
+            	</p:selectOneMenu>
+            	
+            	<h:outputText value="Forma de Pagamento: " />
+		        <p:selectOneMenu style="width:200px" value="#{financeiroController.transacao.formaPagamento}">
+		        	<p:outputLabel for="formaPagamento" value="Tipo Livro: " />
+                	<f:selectItem itemLabel="Selecione o pagamento" itemValue="" noSelectionOption="true" />
+                	<f:selectItems value="#{financeiroController.formasPagamento}" var="formaPagamento"/>
+            	</p:selectOneMenu>
+            	
+            	 <h:outputText value="Valor: " />
+		        <p:inputText value="#{financeiroController.transacao.valor}">
+		        </p:inputText>
+            	
+		    	<h:outputText value="Observacao: " />
+		       		<p:inputTextarea rows="5" cols="50" value="#{financeiroController.transacao.obs}" style="width:400px">
+		   		</p:inputTextarea>
+
+			</h:panelGrid>
+			<p:commandButton id = "submit" value = "Salvar" style="width:100px;" icon="pi pi-check" action="#{financeiroController.salvar}" ajax="true"/>
+			
+		</h:form>
+	</p:tab>
+	
+</p:accordionPanel>
+</h:body>
+</html>
