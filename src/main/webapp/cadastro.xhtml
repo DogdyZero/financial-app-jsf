@@ -21,7 +21,7 @@ font-weight: bold;
 </h:head>
 <h:body>
 <p:accordionPanel>
-	<p:tab title="Cadastrar Nova Transacao">
+	<p:tab title="Cadastrar Nova Transação">
 		<h:form>
 			<h:panelGrid  rendered="#{not empty financeiroController.mensagem}" columns="1" cellpadding="3" styleClass="aviso">
 					<h:outputText value="#{financeiroController.mensagem}"  />		
@@ -54,6 +54,7 @@ font-weight: bold;
             	
             	 <h:outputText value="Valor: " />
 		        <p:inputText value="#{financeiroController.transacao.valor}">
+		        	        	<f:convertNumber type="currency" maxFractionDigits="2"/>
 		        </p:inputText>
             	
 		    	<h:outputText value="Observacao: " />
@@ -64,6 +65,42 @@ font-weight: bold;
 			<p:commandButton id = "submit" value = "Salvar" style="width:100px;" icon="pi pi-check" action="#{financeiroController.salvar}" ajax="true"/>
 			
 		</h:form>
+	</p:tab>
+	<p:tab title="Relatório Diário">
+			<p:dataTable var="transacao" value="#{financeiroController.transacoes}"
+		 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                 paginator="true" rows="10" style="margin-bottom:20px">
+                 
+	    <p:column headerText="Data">
+	        <h:outputText value="#{transacao.data}" >
+	        	<f:convertDateTime pattern="dd/MM/yyyy" />
+	        </h:outputText>
+	   	</p:column>
+	 
+	    <p:column headerText="Tipo">
+	        <h:outputText value="#{transacao.tipoTransacao}" />
+	        
+	    </p:column>
+	     <p:column headerText="Forma Pagamento">
+	        <h:outputText value="#{transacao.formaPagamento}" />
+	    </p:column>
+	    <p:column headerText="Categoria">
+	        <h:outputText value="#{transacao.categoria.tipoCategoria}" />
+	    </p:column>
+	    
+	    <p:column headerText="Valor">
+	        <h:outputText value="#{transacao.valor}" >
+	        	<f:convertNumber type="currency" maxFractionDigits="2"/>
+	      	</h:outputText>
+	    </p:column>
+	    
+	    <p:column headerText="Observacao">
+	        <h:outputText value="#{transacao.obs}" />
+	    </p:column>
+	 
+	 
+		</p:dataTable>
+	
 	</p:tab>
 	
 </p:accordionPanel>

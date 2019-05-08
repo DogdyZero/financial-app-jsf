@@ -29,7 +29,7 @@ public class Facede {
 	public static Facede getInstance(EntidadeDominio entidade) {
 		if(facede==null) {
 			facede = new Facede(entidade);
-		}
+		} 		
 		return facede;
 	}
 	public String salvar(EntidadeDominio entidade) {

@@ -10,6 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name="transacao")
@@ -19,6 +23,8 @@ public class Transacao extends EntidadeDominio {
 	@Column(name="tra_id")
 	private int id;
 	
+	@CreationTimestamp
+	@Temporal(TemporalType.DATE)
 	@Column(name="tra_data")
 	private Date data;
 	

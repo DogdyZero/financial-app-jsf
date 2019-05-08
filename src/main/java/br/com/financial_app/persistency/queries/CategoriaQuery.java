@@ -11,6 +11,10 @@ public class CategoriaQuery implements IFactoryQuery {
 	
 	}
 	
+	@Override
+	public void setMaps(EntidadeDominio entidade) {
+		
+	}
 	
 	public static IFactoryQuery createCategoriaQuery(EntidadeDominio entidade) {
 		if(categoriaQuery==null) {
@@ -27,6 +31,9 @@ public class CategoriaQuery implements IFactoryQuery {
 	public List<Object> retornoParametros() {
 		return null;
 	}
+
+
+
 
 
 

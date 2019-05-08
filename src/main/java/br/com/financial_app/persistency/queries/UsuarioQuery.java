@@ -19,15 +19,27 @@ public class UsuarioQuery implements IFactoryQuery {
 	private UsuarioQuery(EntidadeDominio entidade) {
 		if(entidade.getClass().getSimpleName().equals(NOME_CLASSE)) {
 			this.usuario = (Usuario) entidade;
-			mapQuery = new HashMap<String,String>();
-			mapParameters = new HashMap<String,List<Object>>();
-			
-			List<Object> listLogin = new ArrayList<Object>();
-			mapQuery.put("login", "from Usuario where login = :param1 "
-					+ " and senha = :param2");
-			listLogin.add(this.usuario.getLogin());
-			listLogin.add(this.usuario.getSenha());
-			mapParameters.put("login", listLogin);
+			createMaps(this.usuario);
+		}
+	}
+	private void createMaps(EntidadeDominio entidade) {
+		mapQuery = new HashMap<String,String>();
+		mapParameters = new HashMap<String,List<Object>>();
+		
+		List<Object> listLogin = new ArrayList<Object>();
+		mapQuery.put("login", "from Usuario where login = :param1 "
+				+ " and senha = :param2");
+		listLogin.add(this.usuario.getLogin());
+		listLogin.add(this.usuario.getSenha());
+		mapParameters.put("login", listLogin);
+	}
+	@Override
+	public void setMaps(EntidadeDominio entidade) {
+		if(mapQuery==null) {
+			if(entidade.getClass().getSimpleName().equals(NOME_CLASSE)) {
+				this.usuario = (Usuario) entidade;
+				createMaps(this.usuario);
+			}
 		}
 	}
 	public static IFactoryQuery createUsuarioQuery(EntidadeDominio entidade) {
@@ -47,5 +59,6 @@ public class UsuarioQuery implements IFactoryQuery {
 	public List<Object> retornoParametros() {
 		return mapParameters.get(this.tipoConsulta);
 	}
+
 
 }

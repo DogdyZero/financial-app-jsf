@@ -58,6 +58,8 @@ public abstract class AbstractDAO implements IDAO{
 	public List<EntidadeDominio> consulta(EntidadeDominio entidade) {
 		iniciarTransacao();
 		
+		this.fabricaQuery.setMaps(entidade);
+		
 		Query query = session.createQuery(
 				this.fabricaQuery.gerarString(getTipoConsulta()));
 		
