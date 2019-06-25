@@ -6,6 +6,5 @@ import br.com.financial_app.persistency.queries.CategoriaQuery;
 public class CategoriaDAO extends AbstractDAO{
 	public CategoriaDAO(EntidadeDominio entidade) {
 		super.entidade = entidade;
-		super.fabricaQuery = CategoriaQuery.createCategoriaQuery(entidade);
 	}
 }

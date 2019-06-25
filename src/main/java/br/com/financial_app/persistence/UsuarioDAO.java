@@ -7,6 +7,5 @@ public class UsuarioDAO extends AbstractDAO {
 	
 	public UsuarioDAO(EntidadeDominio entidade) {
 		super.entidade = entidade;
-		super.fabricaQuery = UsuarioQuery.createUsuarioQuery(entidade);
 	}
 }

@@ -7,7 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import br.com.financial_app.domain.EntidadeDominio;
+import br.com.financial_app.persistency.queries.FactoryQuery;
 import br.com.financial_app.persistency.queries.IFactoryQuery;
+import br.com.financial_app.persistency.queries.IStrategyQuery;
 
 public abstract class AbstractDAO implements IDAO{
 	private int contador =1;
@@ -57,13 +59,13 @@ public abstract class AbstractDAO implements IDAO{
 
 	public List<EntidadeDominio> consulta(EntidadeDominio entidade) {
 		iniciarTransacao();
-		
-		this.fabricaQuery.setMaps(entidade);
+		this.fabricaQuery = FactoryQuery.getInstance(entidade);
+		IStrategyQuery strategyQuery= this.fabricaQuery.createObjQuery(entidade);
 		
 		Query query = session.createQuery(
-				this.fabricaQuery.gerarString(getTipoConsulta()));
+				strategyQuery.gerarString(getTipoConsulta()));
 		
-		List<Object> listaObj = this.fabricaQuery.retornoParametros();
+		List<Object> listaObj = strategyQuery.retornoParametros();
 		contador =1;
 		if(listaObj!=null) {
 			for (Object ob :listaObj) {

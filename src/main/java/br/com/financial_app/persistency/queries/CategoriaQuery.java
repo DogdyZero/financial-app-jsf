@@ -4,23 +4,16 @@ import java.util.List;
 
 import br.com.financial_app.domain.EntidadeDominio;
 
-public class CategoriaQuery implements IFactoryQuery {
-	private static CategoriaQuery categoriaQuery;
+public class CategoriaQuery implements IStrategyQuery {
 	
-	private CategoriaQuery(EntidadeDominio entidadeDominio) {
+	public CategoriaQuery(EntidadeDominio entidadeDominio) {
 	
 	}
 	
 	@Override
 	public void setMaps(EntidadeDominio entidade) {
+		// TODO Auto-generated method stub
 		
-	}
-	
-	public static IFactoryQuery createCategoriaQuery(EntidadeDominio entidade) {
-		if(categoriaQuery==null) {
-			categoriaQuery = new CategoriaQuery(entidade);
-		}
-		return categoriaQuery;
 	}
 	@Override
 	public String gerarString(String tipoConsulta) {
@@ -31,6 +24,8 @@ public class CategoriaQuery implements IFactoryQuery {
 	public List<Object> retornoParametros() {
 		return null;
 	}
+
+
 
 
 

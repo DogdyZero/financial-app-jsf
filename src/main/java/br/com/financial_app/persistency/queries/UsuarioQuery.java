@@ -8,7 +8,7 @@ import java.util.Map;
 import br.com.financial_app.domain.EntidadeDominio;
 import br.com.financial_app.domain.Usuario;
 
-public class UsuarioQuery implements IFactoryQuery {
+public class UsuarioQuery implements IStrategyQuery {
 	private static UsuarioQuery usuarioQuery;
 	private Map<String,String> mapQuery;
 	private Map<String,List<Object>> mapParameters;
@@ -16,15 +16,15 @@ public class UsuarioQuery implements IFactoryQuery {
 	private String tipoConsulta;
 	private final String NOME_CLASSE ="Usuario";
 	
-	private UsuarioQuery(EntidadeDominio entidade) {
-		if(entidade.getClass().getSimpleName().equals(NOME_CLASSE)) {
-			this.usuario = (Usuario) entidade;
-			createMaps(this.usuario);
-		}
-	}
-	private void createMaps(EntidadeDominio entidade) {
+	public UsuarioQuery(EntidadeDominio entidade) {
 		mapQuery = new HashMap<String,String>();
 		mapParameters = new HashMap<String,List<Object>>();
+					
+		mapQuery.put("login", "from Usuario where login = :param1 "
+					+ " and senha = :param2");
+		
+	}
+	private void createSettingMaps(EntidadeDominio entidade) {
 		
 		List<Object> listLogin = new ArrayList<Object>();
 		mapQuery.put("login", "from Usuario where login = :param1 "
@@ -35,18 +35,12 @@ public class UsuarioQuery implements IFactoryQuery {
 	}
 	@Override
 	public void setMaps(EntidadeDominio entidade) {
-		if(mapQuery==null) {
+		if(mapParameters.isEmpty()) {
 			if(entidade.getClass().getSimpleName().equals(NOME_CLASSE)) {
 				this.usuario = (Usuario) entidade;
-				createMaps(this.usuario);
+				createSettingMaps(this.usuario);
 			}
 		}
-	}
-	public static IFactoryQuery createUsuarioQuery(EntidadeDominio entidade) {
-		if(usuarioQuery==null) {
-			usuarioQuery = new UsuarioQuery(entidade);
-		}
-		return usuarioQuery;
 	}
 	
 	@Override
