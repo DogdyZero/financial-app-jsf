@@ -6,15 +6,15 @@
     <session-factory>
     
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.password">gomes</property>
+        <property name="hibernate.connection.password">hidden</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/root</property>
-        <property name="hibernate.connection.username">douglas</property>
+        <property name="hibernate.connection.username">hidden</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         
         
 <!--         <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> -->
-<!--         <property name="hibernate.connection.username">cliente2</property> -->
-<!--         <property name="hibernate.connection.password">Senha123</property> -->
+<!--         <property name="hibernate.connection.username">hidden</property> -->
+<!--         <property name="hibernate.connection.password">hidden</property> -->
        
 <!--         <property name="hibernate.connection.url">jdbc:sqlserver://192.168.0.35:2909/financial-system-testdb</property> -->
         
